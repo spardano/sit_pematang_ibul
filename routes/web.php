@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\converToPDFController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/sktm', [converToPDFController::class, 'suratSKTM']);
+Route::get('/sku', [converToPDFController::class, 'suratUsaha']);
+Route::get('/skm', [converToPDFController::class, 'suratKematian']);
+Route::get('/skr', [converToPDFController::class, 'suratIzinKeramaian']);
+Route::get('/skck', [converToPDFController::class, 'skck']);
+Route::get('/skim', [converToPDFController::class, 'suratMenikah']);
