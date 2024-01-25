@@ -22,7 +22,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class PendudukResource extends Resource
 {
     protected static ?string $model = Penduduk::class;
-
+    protected static ?string $navigationLabel = 'Penduduk';
+    protected static ?string $navigationGroup = 'Kependudukan';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -87,32 +88,6 @@ class PendudukResource extends Resource
                 Tables\Columns\TextColumn::make('nama_lengkap')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('jenis_kelamin')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('tempat_lahir')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('hubungan_dalam_keluarga')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('tanggal_lahir')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('agama')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('pendidikan')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('jenis_pekerjaan')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('golongan_darah')
                     ->searchable(),
             ])
             ->filters([

@@ -22,6 +22,9 @@ class Penduduk extends Model
         'pendidikan',
         'jenis_pekerjaan',
         'golongan_darah',
+        'file_ktp',
+        'file_kk',
+        'pas_foto'
     ];
 
     public function agama()

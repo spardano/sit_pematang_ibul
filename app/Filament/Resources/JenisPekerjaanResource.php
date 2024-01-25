@@ -19,6 +19,8 @@ class JenisPekerjaanResource extends Resource
 {
     protected static ?string $model = JenisPekerjaan::class;
 
+    protected static ?string $navigationLabel = 'Jenis Pekerjaan';
+    protected static ?string $navigationGroup = 'Kependudukan';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
