@@ -16,8 +16,6 @@ class converToPDFController extends Controller
 
         $pengajuan = PengajuanLayanan::where('id', $record)->first();
 
-        // dd($pengajuan->pejabat_ttd->getFirstMediaUrl('signature'));
-
         $field_data = json_decode($pengajuan->data_field);
 
         $data['pengajuan'] = $pengajuan;
