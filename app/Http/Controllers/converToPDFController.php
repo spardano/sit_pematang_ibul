@@ -2,40 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PengajuanLayanan;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Facade;
-use PDF;
+
 
 class converToPDFController extends Controller
 {
-    public function suratSKTM()
+    public function downloadPdf($record)
     {
-        return view('formsuratPDF.sktm');
-    }
 
-    public function suratUsaha()
-    {
-        return view('formsuratPDF.surat-izin-usaha');
-    }
+        $pengajuan = PengajuanLayanan::where('id', $record)->first();
 
-    public function suratKematian()
-    {
-        return view('formsuratPDF.surat-kematian');
-    }
+        // dd($pengajuan->pejabat_ttd->getFirstMediaUrl('signature'));
 
-    public function suratIzinKeramaian()
-    {
-        return view('formsuratPDF.surat-izin-keramaian');
-    }
+        $field_data = json_decode($pengajuan->data_field);
 
-    public function skck()
-    {
-        return view('formsuratPDF.skck');
-    }
+        $data['pengajuan'] = $pengajuan;
+        $data['field_data'] = $field_data;
 
-    public function suratMenikah()
-    {
-        return view('formsuratPDF.surat-keterangan-menikah');
+        if ($pengajuan->layanan_desa->slug == 'surat-keterangan-tidak-mampu') {
+            $pdf = Pdf::loadView('formsuratPDF.sktm', $data);
+        }
+
+        $pdf->setPaper('a4', 'portrait');
+        return $pdf->stream();
     }
 }

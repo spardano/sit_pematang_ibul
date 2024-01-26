@@ -4,8 +4,12 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PengajuanLayananResource\Pages;
 use App\Filament\Resources\PengajuanLayananResource\RelationManagers;
+use App\Models\PejabatPenandatangan;
 use App\Models\PengajuanLayanan;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Notifications\Collection;
 use Filament\Resources\Resource;
@@ -56,6 +60,37 @@ class PengajuanLayananResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\Action::make('download_surat')
+                    ->icon('heroicon-o-arrow-down-circle')
+                    ->color('success')
+                    ->url(fn (PengajuanLayanan $record) => route('pengajuan_layanan.download.pdf', ['pengajuan' => $record]))
+                    ->openUrlInNewTab()
+                    ->visible(function ($record) {
+                        return $record->status_pengajuan == 2;
+                    }),
+
+                Tables\Actions\Action::make('setujui')
+                    ->icon('heroicon-o-check')
+                    ->color('success')
+                    ->action(function ($data, $record): void {
+                        self::approved($record, $data);
+                    })->form([
+                        TextInput::make('nomor_surat')->label('Nomor Surat'),
+                        Select::make('id_pejabat')
+                            ->label('Pilih Pejabat Penandatangan')
+                            ->options(PejabatPenandatangan::all()->pluck('nama_pejabat', 'id'))
+                            ->native(false)
+                    ])->visible(function ($record) {
+                        return $record->status_pengajuan == 1;
+                    }),
+                Tables\Actions\Action::make('tolak')->icon('heroicon-o-x-circle')->color('danger')->action(function ($data, $record): void {
+                    self::rejected($record, $data);
+                })->form([
+                    Textarea::make('alasan_penolakan')->label('Alasan Penolakan')->required(),
+                ])->visible(function ($record) {
+                    return $record->status_pengajuan == 1;
+                }),
+
                 Action::make('detail')
                     ->color('info')
                     ->icon('heroicon-o-eye')
@@ -66,13 +101,27 @@ class PengajuanLayananResource extends Resource
                         }
                     )
                     ->modalSubmitAction(false),
-                // Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    public static function approved($record, $data)
+    {
+        $record->status_pengajuan = 2;
+        $record->nomor_surat = $data['nomor_surat'];
+        $record->id_pejabat = $data['id_pejabat'];
+        $record->save();
+    }
+
+    public static function rejected($record, $data)
+    {
+        $record->alasan_penolakan = $data['alasan_penolakan'];
+        $record->status_pengajuan = 3;
+        $record->save();
     }
 
     public static function getRelations(): array

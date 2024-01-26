@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-        .text-paragraf {
-            text-indent: 0.5in;
+         .text-paragraf{
+            line-height: 27px;
+            text-align: justify;
+        }
+
+        .table-bio tr td {
+            height: 30px;
         }
 
         .cup {
@@ -14,14 +19,6 @@
             width: 100%;
         }
 
-        .cup p {
-            line-height: 2px;
-        }
-
-        .table-bio {
-            margin-left: 130px;
-            margin-right: auto;
-        }
 
         .table-kel {
             border-collapse: collapse;
@@ -45,92 +42,113 @@
         .text-center {
             text-align: center
         }
+
+        .kop-header-text{
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 10px;
+        }
+
+        .sign{
+            width: 200px;
+            margin-top:20px; 
+            text-align:center;
+            position: absolute;
+            right: 40px;
+        }
     </style>
     <title>Surat Keterangan Tidak Mampu</title>
 </head>
 
-<body>
+<body style="margin-left: 40px; margin-right:30px; margin-bottom:0px; margin-top:0px;">
     <table class="cup">
         <tr>
-            <td><img src="{{ asset('images/LogoDesa.png') }}" style="width: 70px;">
-                <hr>
-            </td>
+            <td><img src="{{ asset('images/LogoDesa.png') }}" style="width: 70px;"></td>
             <td class="text-center">
-                <p style="font-size:18px">PEMERINTAHAN KABUPATEN ROKAN HILIR</p>
-                <p style="font-size:18px; text-transform: UPPERCASE">KECAMATAN BANGKO PUSAKO</p>
-                <p style="font-size:33px; text-transform: UPPERCASE ">KEPENGHULUAN PEMATANG IBUL</p>
-                <p style="font-size:14px">JL.LINTAS RIAU - SUMUT Kode Pos.28993</p>
-                <hr>
+                <p class="kop-header-text">PEMERINTAHAN KABUPATEN ROKAN HILIR</p>
+                <p class="kop-header-text">KECAMATAN BANGKO PUSAKO</p>
+                <p class="kop-header-text">KEPENGHULUAN PEMATANG IBUL</p>
+                <div style="border-top: 1px solid black;">
+                    <p style="font-size:14px; margin-bottom:8px; font-weight:bold; line-height:5px;">JL.LINTAS RIAU - SUMUT Kode Pos.28993</p>
+                    <hr style="margin:1px;">
+                    <hr style="border-top: 3px solid black; margin:0;">
+                    <hr style="margin:1px;">
+                </div>
             </td>
         </tr>
     </table>
 
-    <h3 style="text-decoration:underline" class="text-center">SURAT KETERANGAN TIDAK MAMPU</h3>
-    <p style="line-height: 1px " class="text-center">Nomor...............</p><br>
+    <div class="container">
+        <h3 style="text-decoration:underline" class="text-center">SURAT KETERANGAN TIDAK MAMPU</h3>
+        <p style="line-height: 1px; margin-bottom:0px;" class="text-center">Nomor: {{ $pengajuan->nomor_surat }}</p><br>
 
-    <p class="text-paragraf">Yang bertanda tangan dibawah ini, Saya</p><br>
+        <p style="line-height: 10px; margin-top:0px; margin-bottom:0px;">Yang bertanda tangan dibawah ini, Saya</p><br>
 
-    <table class="table-bio" cellpadding="3">
+        <table cellpadding="3">
+            <tr>
+                <td>Nama Lengkap</td>
+                <td style="text-transform: UPPERCASE">: {{ $pengajuan->pejabat_ttd->nama_pejabat }}</td>
+            </tr>
+            <tr>
+                <td>Jenis Kelamin</td>
+                <td style="text-transform: UPPERCASE">: {{ $pengajuan->pejabat_ttd->getJenisKelaminFormattedAttribute() }}</td>
+            </tr>
+            <tr>
+                <td>jabatan</td>
+                <td style="text-transform: UPPERCASE">: {{ $pengajuan->pejabat_ttd->jabatan}}</td>
+            </tr>
+        </table>
 
-        <tr>
-            <td>Nama Lengkap</td>
-            <td style="text-transform: UPPERCASE">: Sakti Par Dano</td>
-        </tr>
-        <tr>
-            <td>Jenis Kelamin</td>
-            <td style="text-transform: UPPERCASE">: Laki-laki</td>
-        </tr>
-        <tr>
-            <td>jabatan</td>
-            <td style="text-transform: UPPERCASE">: Penghulu Pematang Ibul</td>
-        </tr>
-    </table>
     <p style="line-height: 100%" class="text-paragraf">Dengan ini menerangkan bahwa :</p>
+
     <table class="table-bio" cellpadding="3">
         <tr>
             <td>Nama</td>
-            <td style="text-transform: UPPERCASE">: Aldian Willia</td>
+            <td style="text-transform: UPPERCASE">: {{ $pengajuan->user->penduduk->nama_lengkap }}</td>
         </tr>
 
         <tr>
             <td>Tempat/Tgl.Lahir</td>
-            <td style="text-transform: UPPERCASE">: BUKITTINGGI, 26 Oktober 1997</td>
+            <td style="text-transform: UPPERCASE">: {{ $pengajuan->user->penduduk->tempat_lahir  }}, {{ Carbon\Carbon::parse($pengajuan->user->penduduk->tanggal_lahir)->format('d-m-Y') }}</td>
         </tr>
 
         <tr>
             <td>Fakultas / Jurusan</td>
-            <td style="text-transform: UPPERCASE">: Politeknik Caltex Riau / Teknik Informatika</td>
+            <td style="text-transform: UPPERCASE">: {{ $field_data->jurusan  }}</td>
         </tr>
 
         <tr>
             <td>Alamat</td>
-            <td>: Jl. Maharaja Sri Wangsa</td>
+            <td>: {{ $pengajuan->user->penduduk->alamat  }}</td>
         </tr>
 
         <tr>
             <td>NIK</td>
-            <td>: 1407726109700010</td>
+            <td>: {{ $pengajuan->user->nik  }}</td>
         </tr>
 
     </table>
 
 
-    <p style="line-height: 100%" class="text-paragraf">Orang tersebut benar-benar penduduk desa Pematang Ibul dan termasuk keluarga tidak
+    <p class="text-paragraf">Orang tersebut benar-benar penduduk desa Pematang Ibul dan termasuk keluarga tidak
         mampu. Surat keterangan ini dipergunakan untuk “Syarat kelengkapan Administrasi Calon
         Penerima Beasiswa”.
     </p>
-    <p style="line-height: 100%" class="text-paragraf">Demikian surat keterangan ini kami buat dengan sebenarnya untuk dapat dipergunakan
+    <p class="text-paragraf">Demikian surat keterangan ini kami buat dengan sebenarnya untuk dapat dipergunakan
         sebagaimana mestinya.
     </p>
 
 
-    <div style="margin-left: 450px; margin-top:10px; text-align:center">
-        <p style="line-height: 10%">Pematang Ibul, 17-Nov-2023</p>
-        <p style="line-height: 10%">Penghulu Pematang Ibul</p>
+    <div class="sign">
+        <p style="line-height: 10%">Pematang Ibul, {{ Carbon\Carbon::today()->toDateString()}}</p>
+        <p style="line-height: 10%; margin-bottom:0px;">{{ $pengajuan->pejabat_ttd->jabatan}}</p>
+        
+        <img width="90%" src="{{$pengajuan->pejabat_ttd->getFirstMediaUrl('signature')}}">
 
-        <p style=" text-decoration:underline;  margin-top:30px"> SAMRI,A.Md</p>
-        <p style="line-height: 10%">NIP: 0012002</p>
+        <p style=" text-decoration:underline; margin-top:0px;"> {{$pengajuan->pejabat_ttd->nama_pejabat}}</p>
+        <p style="line-height: 10%">NIP: {{$pengajuan->pejabat_ttd->nip}}</p>
     </div>
+
 
 </body>
 

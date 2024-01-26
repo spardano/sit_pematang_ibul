@@ -15,13 +15,16 @@ class PengajuanLayanan extends Model
         'nik',
         'data_field',
         'uploaded_dokumen',
-        'status_pengajuan'
+        'status_pengajuan',
+        'id_pejabat',
     ];
 
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'id_user');
     }
+
+
 
     public function layanan_desa()
     {
@@ -36,5 +39,10 @@ class PengajuanLayanan extends Model
     public function getDocument()
     {
         return json_decode($this->uploaded_dokumen);
+    }
+
+    public function pejabat_ttd()
+    {
+        return $this->hasOne(PejabatPenandatangan::class, 'id', 'id_pejabat');
     }
 }

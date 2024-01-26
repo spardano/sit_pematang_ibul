@@ -18,9 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sktm', [converToPDFController::class, 'suratSKTM']);
-Route::get('/sku', [converToPDFController::class, 'suratUsaha']);
-Route::get('/skm', [converToPDFController::class, 'suratKematian']);
-Route::get('/skr', [converToPDFController::class, 'suratIzinKeramaian']);
-Route::get('/skck', [converToPDFController::class, 'skck']);
-Route::get('/skim', [converToPDFController::class, 'suratMenikah']);
+Route::get('/{pengajuan}/download/pdf', [converToPDFController::class, 'downloadPdf'])->name('pengajuan_layanan.download.pdf');
