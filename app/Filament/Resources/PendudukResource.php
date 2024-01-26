@@ -24,7 +24,8 @@ class PendudukResource extends Resource
     protected static ?string $model = Penduduk::class;
     protected static ?string $navigationLabel = 'Penduduk';
     protected static ?string $navigationGroup = 'Kependudukan';
-    protected static ?string $navigationIcon = 'heroicon-o-identification';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
 
     public static function form(Form $form): Form
     {

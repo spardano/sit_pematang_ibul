@@ -16,7 +16,7 @@ class BumdesResource extends Resource
 {
     protected static ?string $model = Bumdes::class;
 
-    protected static ?string $navigationIcon = 'eos-add-business';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationLabel = 'BUMDES';
     protected static ?string $navigationGroup = 'Informasi Publik';
 

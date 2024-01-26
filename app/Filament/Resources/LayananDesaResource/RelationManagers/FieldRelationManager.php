@@ -9,10 +9,6 @@ use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
-use IbrahimBougaoua\FilamentSortOrder\Actions\DownStepAction;
-use IbrahimBougaoua\FilamentSortOrder\Actions\UpStepAction;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class FieldRelationManager extends RelationManager
 {
@@ -44,8 +40,6 @@ class FieldRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                DownStepAction::make(),
-                UpStepAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
@@ -53,7 +47,6 @@ class FieldRelationManager extends RelationManager
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-            ->defaultSort('sort_order', 'asc');;
+            ]);
     }
 }
