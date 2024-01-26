@@ -17,7 +17,7 @@ class HubunganDalamKeluargaResource extends Resource
 
     protected static ?string $navigationLabel = 'Hubungan Dalam Keluarga';
     protected static ?string $navigationGroup = 'Kependudukan';
-    protected static ?string $navigationIcon = 'eos-hub';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
