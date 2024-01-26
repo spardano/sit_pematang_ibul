@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ManageRecords;
 class ManageHubunganDalamKeluargas extends ManageRecords
 {
     protected static string $resource = HubunganDalamKeluargaResource::class;
+    protected static ?string $title = 'HUBUNGAN DALAM KELUARGA';
 
     protected function getHeaderActions(): array
     {

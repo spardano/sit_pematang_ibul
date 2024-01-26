@@ -3,10 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\FieldResource\Pages;
-use App\Filament\Resources\FieldResource\RelationManagers;
 use App\Models\Field;
-use Closure;
-use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
@@ -16,15 +13,13 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class FieldResource extends Resource
 {
     protected static ?string $model = Field::class;
     protected static ?string $navigationLabel = 'Field';
     protected static ?string $navigationGroup = 'Pelayanan Desa';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-queue-list';
 
     public static function form(Form $form): Form
     {

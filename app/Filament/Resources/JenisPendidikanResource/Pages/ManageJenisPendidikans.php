@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ManageRecords;
 class ManageJenisPendidikans extends ManageRecords
 {
     protected static string $resource = JenisPendidikanResource::class;
+    protected static ?string $title = 'PENDIDIKAN';
 
     protected function getHeaderActions(): array
     {

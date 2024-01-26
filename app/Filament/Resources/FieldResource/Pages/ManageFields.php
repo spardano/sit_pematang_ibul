@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ManageRecords;
 class ManageFields extends ManageRecords
 {
     protected static string $resource = FieldResource::class;
+    protected static ?string $title = 'MANAGE FIELD';
 
     protected function getHeaderActions(): array
     {

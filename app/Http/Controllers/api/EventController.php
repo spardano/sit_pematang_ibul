@@ -12,11 +12,8 @@ class EventController extends Controller
     {
         $events = Event::where('status_publish', 1)->orderBy('created_at', 'desc')->get();
 
-
         $data_baru = array();
         $multiplied = $events->map(function ($item) {
-
-
             $media = $item->getMedia('event')->where('model_id', $item->id)->first();
 
             $temp['id'] = $item->id;
@@ -35,6 +32,18 @@ class EventController extends Controller
         return response()->json([
             'status' => true,
             'data' => $data_baru
+        ]);
+    }
+
+    public function getSingleEvent($id)
+    {
+        $event = Event::find($id);
+        $data['event'] = $event;
+        $data['gambar'] = $event->getFirstMediaUrl('event');
+
+        return response()->json([
+            'status' => true,
+            'data' => $data
         ]);
     }
 }

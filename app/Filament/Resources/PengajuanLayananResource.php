@@ -25,7 +25,7 @@ class PengajuanLayananResource extends Resource
     protected static ?string $model = PengajuanLayanan::class;
     protected static ?string $navigationLabel = 'Pengajuan';
     protected static ?string $navigationGroup = 'Pelayanan Desa';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-m-archive-box-arrow-down';
 
     public static function form(Form $form): Form
     {

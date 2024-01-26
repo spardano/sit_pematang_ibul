@@ -32,6 +32,7 @@ Route::prefix('guest')->group(function () {
 
 Route::prefix('umum')->group(function () {
     Route::get('events', [EventController::class, 'getEvents']);
+    Route::get('event/{id}', [EventController::class, 'getSingleEvent']);
 });
 
 Route::middleware('is-authenticated')->prefix('auth')->group(function () {

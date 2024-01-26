@@ -3,17 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\JenisPekerjaanResource\Pages;
-use App\Filament\Resources\JenisPekerjaanResource\RelationManagers;
 use App\Models\JenisPekerjaan;
-use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class JenisPekerjaanResource extends Resource
 {
@@ -21,7 +17,7 @@ class JenisPekerjaanResource extends Resource
 
     protected static ?string $navigationLabel = 'Jenis Pekerjaan';
     protected static ?string $navigationGroup = 'Kependudukan';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'healthicons-o-factory-worker';
 
     public static function form(Form $form): Form
     {

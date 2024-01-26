@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListEvents extends ListRecords
 {
     protected static string $resource = EventResource::class;
+    protected static ?string $title = 'EVENT';
 
     protected function getHeaderActions(): array
     {
