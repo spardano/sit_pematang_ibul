@@ -3,9 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\LayananDesaResource\Pages;
-use App\Filament\Resources\LayananDesaResource\RelationManagers;
 use App\Filament\Resources\LayananDesaResource\RelationManagers\FieldRelationManager;
-use App\Filament\Resources\LayananDesaResource\RelationManagers\PivotLayananFieldsRelationManager;
 use App\Models\LayananDesa;
 use Filament\Forms;
 use Filament\Forms\Components\RichEditor;
@@ -22,7 +20,7 @@ class LayananDesaResource extends Resource
     protected static ?string $model = LayananDesa::class;
     protected static ?string $navigationLabel = 'Layanan Desa';
     protected static ?string $navigationGroup = 'Pelayanan Desa';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-m-home-modern';
 
     public static function form(Form $form): Form
     {

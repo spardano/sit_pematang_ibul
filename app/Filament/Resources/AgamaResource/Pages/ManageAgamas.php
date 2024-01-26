@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ManageRecords;
 class ManageAgamas extends ManageRecords
 {
     protected static string $resource = AgamaResource::class;
+    protected static ?string $title = 'AGAMA';
 
     protected function getHeaderActions(): array
     {

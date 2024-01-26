@@ -3,17 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\HubunganDalamKeluargaResource\Pages;
-use App\Filament\Resources\HubunganDalamKeluargaResource\RelationManagers;
 use App\Models\HubunganDalamKeluarga;
-use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class HubunganDalamKeluargaResource extends Resource
 {
@@ -21,7 +17,7 @@ class HubunganDalamKeluargaResource extends Resource
 
     protected static ?string $navigationLabel = 'Hubungan Dalam Keluarga';
     protected static ?string $navigationGroup = 'Kependudukan';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'eos-hub';
 
     public static function form(Form $form): Form
     {

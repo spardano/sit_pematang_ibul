@@ -3,17 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\JenisPendidikanResource\Pages;
-use App\Filament\Resources\JenisPendidikanResource\RelationManagers;
 use App\Models\JenisPendidikan;
-use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class JenisPendidikanResource extends Resource
 {
@@ -21,7 +17,7 @@ class JenisPendidikanResource extends Resource
 
     protected static ?string $navigationLabel = 'Jenis Pendidikan';
     protected static ?string $navigationGroup = 'Kependudukan';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'carbon-education';
 
     public static function form(Form $form): Form
     {

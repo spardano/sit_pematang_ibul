@@ -2,40 +2,38 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\EventResource\Pages;
-use App\Models\Event;
+use App\Filament\Resources\InformasiResource\Pages;
+use App\Models\Informasi;
 use Filament\Forms;
-use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Components\Toggle;
 
-class EventResource extends Resource
+class InformasiResource extends Resource
 {
-    protected static ?string $model = Event::class;
-    protected static ?string $navigationLabel = 'Event / Kegiatan';
+    protected static ?string $model = Informasi::class;
+
+    protected static ?string $navigationIcon = 'heroicon-s-information-circle';
+    protected static ?string $navigationLabel = 'Informasi / Pengumuman';
     protected static ?string $navigationGroup = 'Informasi Publik';
-    protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('judul_event')
+                Forms\Components\TextInput::make('Informasi_name')
                     ->required()
-                    ->maxLength(255)
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('sub_judul_event')
                     ->maxLength(255)
                     ->columnSpanFull(),
                 RichEditor::make('deskripsi')
                     ->columnSpanFull(),
-                SpatieMediaLibraryFileUpload::make('event')->label('Banner/Poster')
-                    ->collection('event')
+                SpatieMediaLibraryFileUpload::make('informasi')->label('Banner/Poster')
+                    ->collection('informasi')
                     ->columnSpanFull(),
                 Forms\Components\DateTimePicker::make('mulai')
                     ->required(),
@@ -53,8 +51,8 @@ class EventResource extends Resource
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('event')->collection('event'),
-                Tables\Columns\TextColumn::make('judul_event')
+                SpatieMediaLibraryImageColumn::make('informasi')->collection('informasi'),
+                Tables\Columns\TextColumn::make('Informasi_name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('mulai')
                     ->dateTime()
@@ -78,7 +76,6 @@ class EventResource extends Resource
                 //
             ])
             ->actions([
-
                 Tables\Actions\Action::make('deactivate')->label('matikan')->icon('heroicon-o-x-circle')->color('danger')->action(function ($data, $record): void {
                     self::deactivate($record, $data);
                 })->requiresConfirmation()->visible(function ($record) {
@@ -123,9 +120,9 @@ class EventResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListEvents::route('/'),
-            'create' => Pages\CreateEvent::route('/create'),
-            'edit' => Pages\EditEvent::route('/{record}/edit'),
+            'index' => Pages\ListInformasis::route('/'),
+            'create' => Pages\CreateInformasi::route('/create'),
+            'edit' => Pages\EditInformasi::route('/{record}/edit'),
         ];
     }
 }
