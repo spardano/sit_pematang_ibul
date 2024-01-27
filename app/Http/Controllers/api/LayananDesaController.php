@@ -88,10 +88,17 @@ class LayananDesaController extends Controller
             }
         }
 
-        $pengajuan = PengajuanLayanan::where('id_user', $request['user']['id'])->where('id_layanan_desa', $id_layanan)->where('status_pengajuan', 0)->first();
-        $pengajuan->data_field = json_encode($obj_field);
-        $pengajuan->status_pengajuan = 1;
-        $pengajuan->save();
+        $pengajuan = PengajuanLayanan::updateOrCreate([
+            'id_user' => $request['user']['id'],
+            'id_layanan_desa' => $id_layanan,
+            'status_pengajuan' => 0
+        ], [
+            'id_user' => $request['user']['id'],
+            'id_layanan_desa' => $id_layanan,
+            'nik' => $request['user']['nik'],
+            'data_field' => json_encode($obj_field),
+            'status_pengajuan' => 0
+        ]);
 
         if ($pengajuan) {
             return response()->json([
