@@ -22,6 +22,7 @@ class Penduduk extends Model implements HasMedia
         'tanggal_lahir',
         'agama',
         'pendidikan',
+        'status',
         'jenis_pekerjaan',
         'golongan_darah',
         'file_ktp',

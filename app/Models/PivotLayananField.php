@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use IbrahimBougaoua\FilamentSortOrder\Traits\SortOrder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PivotLayananField extends Model
 {
-    use HasFactory, SortOrder;
+    use HasFactory;
 
     protected $fillable = [
         'id_layanan_desa',
