@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-        .text-paragraf{
+        .text-paragraf {
             line-height: 27px;
             text-align: justify;
         }
@@ -43,16 +43,16 @@
             text-align: center
         }
 
-        .kop-header-text{
+        .kop-header-text {
             font-size: 20px;
             font-weight: bold;
             line-height: 10px;
         }
 
-        .sign{
+        .sign {
             width: 200px;
-            margin-top:20px; 
-            text-align:center;
+            margin-top: 20px;
+            text-align: center;
             position: absolute;
             right: 40px;
         }
@@ -63,7 +63,7 @@
 <body style="margin-left: 40px; margin-right:30px; margin-bottom:0px; margin-top:0px;">
     <table class="cup">
         <tr>
-            <td><img src="{{ asset('images/LogoDesa.png') }}" style="width: 70px;"></td>
+            <td><img src="{{ asset('images/LogoDesa.png') }}" style="width: 85px;"></td>
             <td class="text-center">
                 <p class="kop-header-text">PEMERINTAHAN KABUPATEN ROKAN HILIR</p>
                 <p class="kop-header-text">KECAMATAN BANGKO PUSAKO</p>
@@ -79,9 +79,9 @@
     </table>
 
     <h3 style="text-decoration:underline" class="text-center">SURAT KETERANGAN MENIKAH</h3>
-    <p style="line-height: 1px; margin-bottom:0px;" class="text-center">Nomor...............</p><br>
+    <p style="line-height: 1px; margin-bottom:0px;" class="text-center">Nomor: {{ $pengajuan->nomor_surat }}</p><br>
 
-    <p  class="text-paragraf" style="margin-top: 0px;">Yang bertanda tangan dibawah ini Kepala Desa Pematang Ibul kecamatan bangko pusako
+    <p class="text-paragraf" style="margin-top: 0px;">Yang bertanda tangan dibawah ini Kepala Desa Pematang Ibul kecamatan bangko pusako
         kabupaten rokan hilir , Dengan ini menerangkan kepada :</p>
 
     <span class="text-paragraf">I. Mempelai Laki-laki</span>
@@ -89,19 +89,23 @@
     <table class="table-bio" style="margin-bottom: 10px;">
         <tr>
             <td>Nama Lengkap </td>
-            <td style="text-transform:uppercase">: Aldian Willia</td>
+            <td style="text-transform:uppercase">: {{ $pengajuan->user->penduduk->nama_lengkap }}</td>
         </tr>
         <tr>
             <td>Tempat tanggal lahir</td>
-            <td style="text-transform: capitalize">: BUKITTINGGI, 26 Oktober 1997</td>
+            <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->tempat_lahir  }}, {{ Carbon\Carbon::parse($pengajuan->user->penduduk->tanggal_lahir)->format('d-m-Y') }}</td>
         </tr>
         <tr>
             <td>Jenis Kelamin</td>
+            @if($pengajuan->pejabat_ttd->jenis_kelamin = 'L')
             <td style="text-transform: capitalize">: Laki-laki</td>
+            @else
+            <td style="text-transform: capitalize">: Perempuan</td>
+            @endif
         </tr>
         <tr>
             <td>Status Perkawinan</td>
-            <td style="text-transform: capitalize">: Belum Kawin</td>
+            <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->status }}</td>
         </tr>
         <tr>
             <td>Kewarganegaraan</td>
@@ -109,77 +113,79 @@
         </tr>
         <tr>
             <td>Agama</td>
-            <td style="text-transform: capitalize">: Islam</td>
+            <td style="text-transform: capitalize">: {{ $agama }}</td>
         </tr>
         <tr>
             <td>Pekerjaan</td>
-            <td style="text-transform: capitalize">: Buruh Harian</td>
+            <td style="text-transform: capitalize">: {{ $jenis_pekerjaan }}</td>
         </tr>
         <tr>
             <td>NIK</td>
-            <td style="text-transform: capitalize">: 14077726109700010</td>
+            <td style="text-transform: capitalize">: {{ $pengajuan->user->nik  }}</td>
         </tr>
         <tr>
             <td>Alamat</td>
-            <td style="text-transform: capitalize">: Jl.Yang Lurus</td>
+            <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->alamat  }}</td>
         </tr>
     </table>
 
-    <span  class="text-paragraf">II. Mempelai Perempuan</span>
+    <span class="text-paragraf">II. Mempelai Perempuan</span>
 
     <table class="table-bio">
         <tr>
             <td>Nama Lengkap </td>
-            <td style="text-transform:uppercase">: Aldian Willia</td>
+            <td style="text-transform:uppercase">: {{ $field_data->nama_pasangan  }}</td>
         </tr>
         <tr>
             <td>Tempat tanggal lahir</td>
-            <td style="text-transform: capitalize">: BUKITTINGGI, 26 Oktober 1997</td>
+            <td style="text-transform: capitalize">: {{ $field_data->tempat_lahir_pasangan  }}, {{ Carbon\Carbon::parse($field_data->tanggal_lahir_pasangan)->format('d-m-Y') }}</td>
         </tr>
         <tr>
             <td>Jenis Kelamin</td>
-            <td style="text-transform: capitalize">: Laki-laki</td>
+            <td style="text-transform: capitalize">: {{ $field_data->jenis_kelamin_pasangan  }}</td>
         </tr>
         <tr>
             <td>Status Perkawinan</td>
-            <td style="text-transform: capitalize">: Belum Kawin</td>
+            <td style="text-transform: capitalize">: {{ $field_data->status_perkawinan_pasangan  }}</td>
         </tr>
         <tr>
             <td>Kewarganegaraan</td>
-            <td style="text-transform: capitalize">: Indonesia</td>
+            <td style="text-transform: capitalize">: {{ $field_data->kewarganegaraan  }}</td>
         </tr>
         <tr>
             <td>Agama</td>
-            <td style="text-transform: capitalize">: Islam</td>
+            <td style="text-transform: capitalize">: {{ $field_data->agama_pasangan }}</td>
         </tr>
         <tr>
             <td>Pekerjaan</td>
-            <td style="text-transform: capitalize">: Buruh Harian</td>
+            <td style="text-transform: capitalize">: {{ $field_data->pekerjaan_pasangan }}</td>
         </tr>
         <tr>
             <td>NIK</td>
-            <td style="text-transform: capitalize">: 14077726109700010</td>
+            <td style="text-transform: capitalize">: {{ $field_data->nik_pasangan }}</td>
         </tr>
         <tr>
             <td>Alamat</td>
-            <td style="text-transform: capitalize">: Jl.Yang Lurus</td>
+            <td style="text-transform: capitalize">: {{ $field_data->alamat_pasangan }}</td>
         </tr>
     </table>
 
 
     <p class="text-paragraf">Bahwa kedua nama tersebut di atas sepanjang pengetahuan, pengecekan, dan
-        pemeriksaaan kami, benar - benar suami istri yang sudah menikah Di .........
-        Pada ........</p>
+        pemeriksaaan kami, benar - benar suami istri yang sudah menikah Di {{ $field_data->lokasi }}
+        Pada {{ $field_data->tanggal_menikah }}p>
 
     <p class="text-paragraf">Demikian surat keterangan ini dibuat dengan sebenarnya, agar dapat dipergunakan
         sebagaimana mestinya.</p>
 
     <div class="sign">
-        <p style="line-height: 10%">Pematang Ibul, 17-Nov-2023</p>
-        <p style="line-height: 10%">Penghulu Pematang Ibul</p>
+        <p style="line-height: 10%">Pematang Ibul, {{ Carbon\Carbon::today()->toDateString()}}</p>
+        <p style="line-height: 10%; margin-bottom:0px;">{{ $pengajuan->pejabat_ttd->jabatan}}</p>
 
-        <p style=" text-decoration:underline;  margin-top:50px"> SAMRI,A.Md</p>
-        <p style="line-height: 10%">NIP: 0012002</p>
+        <img width="90%" src="{{$pengajuan->pejabat_ttd->getFirstMediaUrl('signature')}}">
+
+        <p style=" text-decoration:underline; margin-top:0px;"> {{$pengajuan->pejabat_ttd->nama_pejabat}}</p>
+        <p style="line-height: 10%">NIP: {{$pengajuan->pejabat_ttd->nip}}</p>
     </div>
 
 </body>

@@ -24,8 +24,6 @@ class PengajuanLayanan extends Model
         return $this->hasOne(User::class, 'id', 'id_user');
     }
 
-
-
     public function layanan_desa()
     {
         return $this->hasOne(LayananDesa::class, 'id', 'id_layanan_desa');

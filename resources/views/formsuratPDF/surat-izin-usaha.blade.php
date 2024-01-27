@@ -116,20 +116,20 @@
             <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->tempat_lahir  }}, {{ Carbon\Carbon::parse($pengajuan->user->penduduk->tanggal_lahir)->format('d-m-Y') }}</td>
         </tr>
 
-        <!-- <tr>
+        <tr>
             <td>Agama</td>
-            <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->agama }}</td>
-        </tr> -->
+            <td style="text-transform: capitalize">: {{ $agama }}</td>
+        </tr>
 
         <tr>
             <td>Status</td>
             <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->status }}</td>
         </tr>
 
-        <!-- <tr>
+        <tr>
             <td>Pekerjaan</td>
-            <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->jenis_pekerjaan }}</td>
-        </tr> -->
+            <td style="text-transform: capitalize">: {{ $jenis_pekerjaan }}</td>
+        </tr>
 
         <tr>
             <td>Alamat</td>

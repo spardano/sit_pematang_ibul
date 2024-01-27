@@ -17,7 +17,7 @@ class JenisPekerjaanResource extends Resource
 
     protected static ?string $navigationLabel = 'Jenis Pekerjaan';
     protected static ?string $navigationGroup = 'Kependudukan';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-cube';
 
     public static function form(Form $form): Form
     {

@@ -17,7 +17,7 @@ class AgamaResource extends Resource
 
     protected static ?string $navigationLabel = 'Agama';
     protected static ?string $navigationGroup = 'Kependudukan';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-arrows-pointing-out';
 
     public static function form(Form $form): Form
     {

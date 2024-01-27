@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PendudukResource\Pages;
-use App\Filament\Resources\PendudukResource\RelationManagers;
 use App\Models\Agama;
 use App\Models\HubunganDalamKeluarga;
 use App\Models\JenisPekerjaan;
@@ -16,15 +15,13 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PendudukResource extends Resource
 {
     protected static ?string $model = Penduduk::class;
     protected static ?string $navigationLabel = 'Penduduk';
     protected static ?string $navigationGroup = 'Kependudukan';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-identification';
 
 
     public static function form(Form $form): Form

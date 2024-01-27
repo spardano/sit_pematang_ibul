@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PejabatPenandatanganResource\Pages;
-use App\Filament\Resources\PejabatPenandatanganResource\RelationManagers;
 use App\Models\PejabatPenandatangan;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
@@ -13,8 +12,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Saade\FilamentAutograph\Forms\Components\Enums\DownloadableFormat;
 use Saade\FilamentAutograph\Forms\Components\SignaturePad;
 
@@ -23,7 +20,7 @@ class PejabatPenandatanganResource extends Resource
     protected static ?string $model = PejabatPenandatangan::class;
     protected static ?string $navigationLabel = 'Pejabat Penandatangan';
     protected static ?string $navigationGroup = 'Pelayanan Desa';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-shield-check';
 
     public static function form(Form $form): Form
     {

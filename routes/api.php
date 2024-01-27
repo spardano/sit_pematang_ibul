@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AuthMobileController;
+use App\Http\Controllers\api\BumdesController;
 use App\Http\Controllers\api\EventController;
 use App\Http\Controllers\api\InformationController;
 use App\Http\Controllers\api\LayananDesaController;
@@ -35,6 +36,7 @@ Route::prefix('umum')->group(function () {
     Route::get('events', [EventController::class, 'getEvents']);
     Route::get('event/{id}', [EventController::class, 'getSingleEvent']);
     Route::get('informasi', [InformationController::class, 'getInformations']);
+    Route::get('bumdes', [BumdesController::class, 'getBumdes']);
     Route::get('informasi-detail/{id}', [InformationController::class, 'getSingleInformations']);
 });
 

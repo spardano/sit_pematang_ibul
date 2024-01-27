@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-
-        .text-paragraf{
+        .text-paragraf {
             line-height: 27px;
             text-align: justify;
         }
@@ -44,16 +43,16 @@
             text-align: center
         }
 
-        .kop-header-text{
+        .kop-header-text {
             font-size: 20px;
             font-weight: bold;
             line-height: 10px;
         }
 
-        .sign{
+        .sign {
             width: 200px;
-            margin-top:20px; 
-            text-align:center;
+            margin-top: 20px;
+            text-align: center;
             position: absolute;
             right: 40px;
         }
@@ -80,75 +79,77 @@
     </table>
 
     <h3 style="text-decoration:underline" class="text-center">SURAT KETERANGAN CATATAN KEPOLISIAN</h3>
-    <p style="line-height: 1px " class="text-center">Nomor: </p><br>
+    <p style="line-height: 1px " class="text-center">Nomor: {{ $pengajuan->nomor_surat }}</p><br>
 
     <div class="container">
 
-        <p class="text-paragraf">Yang bertanda tangan dibawah ini Kepala Desa Pematang Ibul kecamatan bangko pusako
-            kabupaten rokan hilir , Dengan ini menerangkan bahwa :</p>
+        <p class="text-paragraf">Yang bertanda tangan dibawah ini Kepala Desa Pematang Ibul kecamatan Bangko Pusako
+            kabupaten Rokan Hilir , Dengan ini menerangkan bahwa :</p>
 
-            <table class="table-bio" style="margin-left: 40px;">
-                <tr>
-                    <td>Nama Lengkap </td>
-                    <td style="text-transform:uppercase">: Aldian Willia</td>
-                </tr>
-                <tr>
-                    <td>Jenis Kelamin</td>
-                    <td style="text-transform: capitalize">: Laki-laki</td>
-                </tr>
-                <tr>
-                    <td>Tempat tanggal lahir</td>
-                    <td style="text-transform: capitalize">: BUKITTINGGI, 26 Oktober 1997</td>
-                </tr>
-                <tr>
-                    <td>Status Perkawinan</td>
-                    <td style="text-transform: capitalize">: Belum Kawin</td>
-                </tr>
-                <tr>
-                    <td>Kewarganegaraan</td>
-                    <td style="text-transform: capitalize">: Indonesia</td>
-                </tr>
-                <tr>
-                    <td>Agama</td>
-                    <td style="text-transform: capitalize">: Islam</td>
-                </tr>
-                <tr>
-                    <td>Pekerjaan</td>
-                    <td style="text-transform: capitalize">: Buruh Harian</td>
-                </tr>
-                <tr>
-                    <td>NIK</td>
-                    <td style="text-transform: capitalize">: 14077726109700010</td>
-                </tr>
-                <tr>
-                    <td>Alamat</td>
-                    <td style="text-transform: capitalize">: Jl.Yang Lurus</td>
-                </tr>
-            </table>
+        <table class="table-bio" style="margin-left: 40px;">
+            <tr>
+                <td>Nama Lengkap </td>
+                <td style="text-transform:uppercase">: {{ $pengajuan->user->penduduk->nama_lengkap }}</td>
+            </tr>
+            <tr>
+                <td>Jenis Kelamin</td>
+                @if($pengajuan->pejabat_ttd->jenis_kelamin = 'L')
+                <td style="text-transform: capitalize">: Laki-laki</td>
+                @else
+                <td style="text-transform: capitalize">: Perempuan</td>
+                @endif
 
-
-            <p class="text-paragraf">Orang tersebut diatas adalah benar penduduk desa Pematang Ibul yang berdomisili di
-                alamat diatas serta kami menerangkan bahwa orang tersebut benar Berkelakuan Baik dan
-                Belum Pernah Tersangkut Perkara Polisi. Surat keterangan ini kami berikan untuk memenuhi
-                salah satu persyaratan ...............</p>
-
-            <p  class="text-paragraf">Demikian surat keterangan ini dibuat dengan sebenarnya, agar dapat dipergunakan
-                    sebagaimana mestinya.</p>
+            </tr>
+            <tr>
+                <td>Tempat tanggal lahir</td>
+                <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->tempat_lahir  }}, {{ Carbon\Carbon::parse($pengajuan->user->penduduk->tanggal_lahir)->format('d-m-Y') }}</td>
+            </tr>
+            <tr>
+                <td>Status Perkawinan</td>
+                <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->status }}</td>
+            </tr>
+            <tr>
+                <td>Kewarganegaraan</td>
+                <td style="text-transform: capitalize">: Indonesia</td>
+            </tr>
+            <tr>
+                <td>Agama</td>
+                <td style="text-transform: capitalize">: {{ $agama  }}</td>
+            </tr>
+            <tr>
+                <td>Pekerjaan</td>
+                <td style="text-transform: capitalize">: {{ $jenis_pekerjaan }}</td>
+            </tr>
+            <tr>
+                <td>NIK</td>
+                <td style="text-transform: capitalize">: {{ $pengajuan->user->nik  }}</td>
+            </tr>
+            <tr>
+                <td>Alamat</td>
+                <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->alamat  }}</td>
+            </tr>
+        </table>
 
 
-            <div class="sign">
-                <p style="line-height: 10%">Pematang Ibul, 17-Nov-2023</p>
-                <p style="line-height: 10%">Penghulu Pematang Ibul</p>
-        
-                <p style=" text-decoration:underline;  margin-top:50px"> SAMRI,A.Md</p>
-                <p style="line-height: 10%">NIP: 0012002</p>
-            </div>
+        <p class="text-paragraf">Orang tersebut diatas adalah benar penduduk desa Pematang Ibul yang berdomisili di
+            alamat diatas serta kami menerangkan bahwa orang tersebut benar Berkelakuan Baik dan
+            Belum Pernah Tersangkut Perkara Polisi. Surat keterangan ini kami berikan untuk memenuhi
+            salah satu persyaratan pengurusan Surat Keterangan Catatan Kepolisian (SKCK)</p>
+
+        <p class="text-paragraf">Demikian surat keterangan ini dibuat dengan sebenarnya, agar dapat dipergunakan
+            sebagaimana mestinya.</p>
+
+
+        <div class="sign">
+            <p style="line-height: 10%">Pematang Ibul, {{ Carbon\Carbon::today()->toDateString()}}</p>
+            <p style="line-height: 10%; margin-bottom:0px;">{{ $pengajuan->pejabat_ttd->jabatan}}</p>
+
+            <img width="90%" src="{{$pengajuan->pejabat_ttd->getFirstMediaUrl('signature')}}">
+
+            <p style=" text-decoration:underline; margin-top:0px;"> {{$pengajuan->pejabat_ttd->nama_pejabat}}</p>
+            <p style="line-height: 10%">NIP: {{$pengajuan->pejabat_ttd->nip}}</p>
+        </div>
     </div>
-
-
-
-
-
 
 </body>
 

@@ -78,8 +78,7 @@
         </tr>
     </table>
 
-    <h3 style="text-decoration:underline" class="text-center">SURAT PERMOHONAN IZIN KERAMAIAN</h3>
-    <p style="line-height: 1px; margin-bottom:0pc;" class="text-center">Nomor: {{ $pengajuan->nomor_surat }}</p><br>
+    <h3 style="text-decoration:underline" class="text-center">SURAT PERMOHONAN IZIN KERAMAIAN</h3><br>
 
     <table style="width: 100%; margin-top:0px;">
         <tr>
@@ -87,11 +86,11 @@
                 <table class="table-bio">
                     <tr>
                         <td>Nomor</td>
-                        <td style="text-transform:uppercase">: Kepada yth,</td>
+                        <td style="text-transform:uppercase">: {{ $pengajuan->nomor_surat }}</td>
                     </tr>
                     <tr>
                         <td>Lamp</td>
-                        <td style="text-transform: capitalize">: -</td>
+                        <td style="text-transform: capitalize">: 1</td>
                     </tr>
                     <tr>
                         <td>Perihal</td>
@@ -120,27 +119,27 @@
 
 
     <p class="text-paragraf">Bersama ini kamisampaikan surat pembritahuan izin keramaian dan mengumpul orang
-        banyak dalam acara ......... yang dilaksanakan pada :</p>
+        banyak dalam acara {{ $field_data->acara  }} yang dilaksanakan pada :</p>
 
     <table class="table-bio" cellpadding="3">
         <tr>
-            <td>Hari</td>
+            <td>{{ $field_data->hari  }}</td>
             <td style="text-transform: capitalize">: Senin</td>
         </tr>
 
         <tr>
             <td>Tanggal</td>
-            <td style="text-transform: capitalize">: 26 Oktober 1997</td>
+            <td style="text-transform: capitalize">: {{ $field_data->acara  }}</td>
         </tr>
 
         <tr>
             <td>Acara</td>
-            <td style="text-transform: capitalize">: Perkawinan</td>
+            <td style="text-transform: capitalize">: {{ $field_data->acara  }}</td>
         </tr>
 
         <tr>
             <td>Tempat</td>
-            <td style="text-transform: capitalize">: Depan Rumah</td>
+            <td style="text-transform: capitalize">: {{ $field_data->lokasi  }}</td>
         </tr>
 
     </table>
@@ -151,11 +150,13 @@
     </p>
 
     <div class="sign">
-        <p style="line-height: 10%">Pematang Ibul, 17-Nov-2023</p>
-        <p style="line-height: 10%">Penghulu Pematang Ibul</p>
+        <p style="line-height: 10%">Pematang Ibul, {{ Carbon\Carbon::today()->toDateString()}}</p>
+        <p style="line-height: 10%; margin-bottom:0px;">{{ $pengajuan->pejabat_ttd->jabatan}}</p>
 
-        <p style=" text-decoration:underline;  margin-top:50px"> SAMRI,A.Md</p>
-        <p style="line-height: 10%">NIP: 0012002</p>
+        <img width="90%" src="{{$pengajuan->pejabat_ttd->getFirstMediaUrl('signature')}}">
+
+        <p style=" text-decoration:underline; margin-top:0px;"> {{$pengajuan->pejabat_ttd->nama_pejabat}}</p>
+        <p style="line-height: 10%">NIP: {{$pengajuan->pejabat_ttd->nip}}</p>
     </div>
 
 </body>

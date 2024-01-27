@@ -44,7 +44,7 @@ class Penduduk extends Model implements HasMedia
 
     public function jenis_pekerjaan()
     {
-        return $this->hasOne(JenisPekerjaan::class, 'jenis_pekerjaan');
+        return $this->hasOne(JenisPekerjaan::class, 'id', 'jenis_pekerjaan');
     }
 
     public function hubungan_dalam_keluarga()
