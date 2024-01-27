@@ -91,11 +91,17 @@ class AuthMobileController extends Controller
         $data['user'] = $user;
         $data['expired_at'] = Carbon::now()->addDay();
 
+        $temp['pas-foto'] = $user->penduduk->getFirstMediaUrl('pas-foto');
+        $temp['kk'] = $user->penduduk->getFirstMediaUrl('kk');
+        $temp['ktp'] = $user->penduduk->getFirstMediaUrl('ktp');
+
+
         $stringiFy = json_encode($data);
         $tokenCrypt = $this->crypt->crypt($stringiFy);
 
         return response()->json([
             'user' => $user,
+            'dokumen' => $temp,
             'status' => true,
             'access_token' => $tokenCrypt,
             'expired_at' => $data['expired_at'],
@@ -224,5 +230,65 @@ class AuthMobileController extends Controller
                 'isExpired' => false,
             ], 200);
         }
+    }
+
+    public function uploadPic(Request $request, $type)
+    {
+        $user = User::find($request['user']['id']);
+
+        if (!$request->has('file')) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Dokument tidak ditemukan'
+            ], 422);
+        }
+
+        $user->penduduk->addMediaFromRequest('file')->toMediaCollection($type);
+
+        if ($type == 'pas-foto') {
+            $user->penduduk->pas_foto = 1;
+        }
+
+        if ($type == 'ktp') {
+            $user->penduduk->file_ktp = 1;
+        }
+
+        if ($type == 'kk') {
+            $user->penduduk->file_kk = 1;
+        }
+
+        $user->penduduk->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Berhasil Upload Berkas',
+            'type' => $type,
+            'file' => $user->penduduk->getFirstMediaUrl($type),
+        ]);
+    }
+
+    public function updateProfile(Request $request)
+    {
+
+        $user = User::where('id', $request['user']['id'])->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        $newUser = User::find($request['user']['id']);
+
+        if ($user) {
+            return response()->json([
+                'status' => true,
+                'message' => 'berhasil menyimpan perubahan',
+                'data' => $newUser,
+            ]);
+        }
+
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Gagal menyimpan perubahan'
+        ]);
     }
 }

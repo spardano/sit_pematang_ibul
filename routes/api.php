@@ -42,4 +42,6 @@ Route::middleware('is-authenticated')->prefix('auth')->group(function () {
     Route::post('submit-layanan/{id}', [LayananDesaController::class, 'storeLayanan']);
     Route::post('upload-berkas/{id}/{field_name}', [LayananDesaController::class, 'uploadBerkas']);
     Route::get('data-pengajuan', [PengajuanController::class, 'getPengajuan']);
+    Route::post('upload-pic/{type}', [AuthMobileController::class, 'uploadPic']);
+    Route::post('update-profile', [AuthMobileController::class, 'updateProfile']);
 });

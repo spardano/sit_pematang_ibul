@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Penduduk extends Model
+class Penduduk extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
         'nokk',
@@ -29,7 +31,7 @@ class Penduduk extends Model
 
     public function agama()
     {
-        return $this->hasOne(Agama::class, 'agama');
+        return $this->hasOne(Agama::class, 'id', 'agama');
     }
 
 

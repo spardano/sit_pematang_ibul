@@ -39,9 +39,6 @@ class isAuthenticated
 
             if ($loginLogs) {
 
-                // $request['user'] = $decode_json_data->user;
-                // $request['access_token'] = $access_token;
-
                 $request->merge(['user' => collect($decode_json_data->user)]);
                 $request->merge(['access_token' => $access_token]);
 
