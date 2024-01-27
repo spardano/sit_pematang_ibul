@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/{pengajuan}/download/pdf', [converToPDFController::class, 'downloadPdf'])->name('pengajuan_layanan.download.pdf');
+Route::get('/sktm', [converToPDFController::class, 'webview'])->name('sktm');

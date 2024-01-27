@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-       .text-paragraf{
+        .text-paragraf {
             line-height: 27px;
             text-align: justify;
         }
@@ -43,16 +43,16 @@
             text-align: center
         }
 
-        .kop-header-text{
+        .kop-header-text {
             font-size: 20px;
             font-weight: bold;
             line-height: 10px;
         }
 
-        .sign{
+        .sign {
             width: 200px;
-            margin-top:20px; 
-            text-align:center;
+            margin-top: 20px;
+            text-align: center;
             position: absolute;
             right: 40px;
         }
@@ -79,7 +79,7 @@
     </table>
 
     <h3 style="text-decoration:underline" class="text-center">SURAT PERMOHONAN IZIN KERAMAIAN</h3>
-    <p style="line-height: 1px; margin-bottom:0pc;" class="text-center">Nomor...............</p><br>
+    <p style="line-height: 1px; margin-bottom:0pc;" class="text-center">Nomor: {{ $pengajuan->nomor_surat }}</p><br>
 
     <table style="width: 100%; margin-top:0px;">
         <tr>
@@ -117,7 +117,7 @@
             </td>
         </tr>
     </table>
-    
+
 
     <p class="text-paragraf">Bersama ini kamisampaikan surat pembritahuan izin keramaian dan mengumpul orang
         banyak dalam acara ......... yang dilaksanakan pada :</p>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-       .text-paragraf{
+        .text-paragraf {
             line-height: 27px;
             text-align: justify;
         }
@@ -43,16 +43,16 @@
             text-align: center
         }
 
-        .kop-header-text{
+        .kop-header-text {
             font-size: 20px;
             font-weight: bold;
             line-height: 10px;
         }
 
-        .sign{
+        .sign {
             width: 200px;
-            margin-top:20px; 
-            text-align:center;
+            margin-top: 20px;
+            text-align: center;
             position: absolute;
             right: 40px;
         }
@@ -79,22 +79,22 @@
     </table>
 
     <h3 style="text-decoration:underline" class="text-center">SURAT KETERANGAN USAHA</h3>
-    <p style="line-height: 1px " class="text-center">Nomor...............</p><br>
+    <p style="line-height: 1px " class="text-center">Nomor: {{ $pengajuan->nomor_surat }}</p><br>
 
     <p style="line-height: 10px; margin-bottom:0px;">Yang bertanda tangan dibawah ini, Saya</p><br>
 
     <table cellpadding="3">
         <tr>
             <td>Nama Lengkap</td>
-            <td style="text-transform: UPPERCASE">: Sakti Par Dano</td>
+            <td style="text-transform:capitalize">: {{ $pengajuan->pejabat_ttd->nama_pejabat }}</td>
         </tr>
         <tr>
             <td>Jenis Kelamin</td>
-            <td style="text-transform: UPPERCASE">: Laki-laki</td>
+            <td style="text-transform: capitalize">: {{ $pengajuan->pejabat_ttd->getJenisKelaminFormattedAttribute() }}</td>
         </tr>
         <tr>
             <td>jabatan</td>
-            <td style="text-transform: UPPERCASE">: Penghulu Pematang Ibul</td>
+            <td style="text-transform: capitalize">: {{ $pengajuan->pejabat_ttd->jabatan}}</td>
         </tr>
     </table>
 
@@ -103,35 +103,44 @@
     <table class="table-bio" cellpadding="3">
         <tr>
             <td>Nama</td>
-            <td style="text-transform: UPPERCASE">: Aldian Willia</td>
-        </tr>
-
-        <tr>
-            <td>Tempat/Tgl.Lahir</td>
-            <td style="text-transform: UPPERCASE">: BUKITTINGGI, 26 Oktober 1997</td>
-        </tr>
-
-        <tr>
-            <td>Fakultas / Jurusan</td>
-            <td style="text-transform: UPPERCASE">: Politeknik Caltex Riau / Teknik Informatika</td>
-        </tr>
-
-        <tr>
-            <td>Alamat</td>
-            <td>: Jl. Maharaja Sri Wangsa</td>
+            <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->nama_lengkap }}</td>
         </tr>
 
         <tr>
             <td>NIK</td>
-            <td>: 1407726109700010</td>
+            <td>: {{ $pengajuan->user->nik  }}</td>
         </tr>
 
+        <tr>
+            <td>Tempat/Tgl.Lahir</td>
+            <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->tempat_lahir  }}, {{ Carbon\Carbon::parse($pengajuan->user->penduduk->tanggal_lahir)->format('d-m-Y') }}</td>
+        </tr>
+
+        <!-- <tr>
+            <td>Agama</td>
+            <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->agama }}</td>
+        </tr> -->
+
+        <tr>
+            <td>Status</td>
+            <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->status }}</td>
+        </tr>
+
+        <!-- <tr>
+            <td>Pekerjaan</td>
+            <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->jenis_pekerjaan }}</td>
+        </tr> -->
+
+        <tr>
+            <td>Alamat</td>
+            <td style="text-transform: capitalize">: {{ $pengajuan->user->penduduk->alamat  }}</td>
+        </tr>
     </table>
 
 
     <p class="text-paragraf">Bahwa orang yang namanya tersebut diatas sepanjang pengetahuan dan pengamatan kami
-        memang benar mempunyai Usaha ................ Sejak tahun .......... Desa pematang ibul kecamatan
-        bangko pusako kabupaten rokan hilir.
+        memang benar mempunyai Usaha {{ $field_data->jenis_usaha  }} Sejak tahun {{ $field_data->tahun_mulai_usaha  }} Desa Pematang Ibul kecamatan
+        Bangko Pusako kabupaten Rokan Hilir.
     </p>
     <p class="text-paragraf">Demikian surat keterangan ini kami buat dengan sebenarnya untuk dapat dipergunakan
         sebagaimana mestinya.
@@ -139,11 +148,13 @@
 
 
     <div class="sign">
-        <p style="line-height: 10%">Pematang Ibul, 17-Nov-2023</p>
-        <p style="line-height: 10%">Penghulu Pematang Ibul</p>
+        <p style="line-height: 10%">Pematang Ibul, {{ Carbon\Carbon::today()->format('d-m-yy')}}</p>
+        <p style="line-height: 10%; margin-bottom:0px;">{{ $pengajuan->pejabat_ttd->jabatan}}</p>
 
-        <p style=" text-decoration:underline;  margin-top:50px"> SAMRI,A.Md</p>
-        <p style="line-height: 10%">NIP: 0012002</p>
+        <img width="90%" src="{{$pengajuan->pejabat_ttd->getFirstMediaUrl('signature')}}">
+
+        <p style=" text-decoration:underline; margin-top:0px;"> {{$pengajuan->pejabat_ttd->nama_pejabat}}</p>
+        <p style="line-height: 10%">NIP: {{$pengajuan->pejabat_ttd->nip}}</p>
     </div>
 
 </body>

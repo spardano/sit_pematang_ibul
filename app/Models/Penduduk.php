@@ -20,6 +20,7 @@ class Penduduk extends Model
         'tanggal_lahir',
         'agama',
         'pendidikan',
+        'status',
         'jenis_pekerjaan',
         'golongan_darah',
         'file_ktp',
@@ -29,7 +30,7 @@ class Penduduk extends Model
 
     public function agama()
     {
-        return $this->hasOne(Agama::class, 'agama');
+        return $this->hasOne(Agama::class, 'id', 'agama');
     }
 
 
