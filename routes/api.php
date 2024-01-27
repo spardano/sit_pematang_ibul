@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\AuthMobileController;
 use App\Http\Controllers\api\EventController;
+use App\Http\Controllers\api\InformationController;
 use App\Http\Controllers\api\LayananDesaController;
 use App\Http\Controllers\api\PengajuanController;
 use Illuminate\Http\Request;
@@ -33,6 +34,8 @@ Route::prefix('guest')->group(function () {
 Route::prefix('umum')->group(function () {
     Route::get('events', [EventController::class, 'getEvents']);
     Route::get('event/{id}', [EventController::class, 'getSingleEvent']);
+    Route::get('informasi', [InformationController::class, 'getInformations']);
+    Route::get('informasi-detail/{id}', [InformationController::class, 'getSingleInformations']);
 });
 
 Route::middleware('is-authenticated')->prefix('auth')->group(function () {

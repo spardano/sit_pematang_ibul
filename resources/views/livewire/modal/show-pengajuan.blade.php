@@ -16,14 +16,35 @@
             {{$data_pengajuan->user->penduduk->nokk}}
         </dd>
         <dt class="font-thin text-sm">Pas Foto:</dt>
+        
         <dd id="productImage">
-          <img id="productImagePlaceholder" src="placeholder.png" alt="Product Image" class="w-24 h-24 object-cover rounded-md">
+          <div style="width: 100px; height:100px; border:1px solid gray; border-radius:20px;">
+            @if ($data_pengajuan->user->penduduk->getFirstMediaUrl('pas-foto'))
+              <img style="width: 100%; height:100%; object-fit:cover; border-radius:20px;" id="productImagePlaceholder" src="{{ $data_pengajuan->user->penduduk->getFirstMediaUrl('pas-foto') }}" class="object-cover">
+            @endif
+          </div>
         </dd>
         
         <dt class="font-thin text-sm">Foto KK:</dt>
-        <dd id="productCategory"></dd>
+        <dd id="productCategory">
+          <dd id="productImage">
+            <div style="width: 100px; height:100px; border:1px solid gray; border-radius:20px;">
+              @if ($data_pengajuan->user->penduduk->getFirstMediaUrl('kk'))
+                <img style="width: 100%; height:100%; object-fit:cover; border-radius:20px;" id="productImagePlaceholder" src="{{ $data_pengajuan->user->penduduk->getFirstMediaUrl('kk') }}" class="object-cover">
+              @endif
+            </div>
+          </dd>
+        </dd>
         <dt class="font-thin text-sm">Foto KTP:</dt>
-        <dd id="productBrand"></dd>
+        <dd id="productBrand">
+          <dd id="productImage">
+            <div style="width: 100px; height:100px; border:1px solid gray; border-radius:20px;">
+              @if ($data_pengajuan->user->penduduk->getFirstMediaUrl('ktp'))
+                <img style="width: 100%; height:100%; object-fit:cover; border-radius:20px;" id="productImagePlaceholder" src="{{ $data_pengajuan->user->penduduk->getFirstMediaUrl('ktp') }}" class="object-cover">
+              @endif
+            </div>
+          </dd>
+        </dd>
       </dl>
     </div>
     <div class="p-4 rounded-md shadow-md">

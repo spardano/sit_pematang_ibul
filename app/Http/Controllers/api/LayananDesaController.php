@@ -97,7 +97,7 @@ class LayananDesaController extends Controller
             'id_layanan_desa' => $id_layanan,
             'nik' => $request['user']['nik'],
             'data_field' => json_encode($obj_field),
-            'status_pengajuan' => 0
+            'status_pengajuan' => 1
         ]);
 
         if ($pengajuan) {

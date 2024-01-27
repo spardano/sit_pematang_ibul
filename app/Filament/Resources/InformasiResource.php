@@ -26,19 +26,14 @@ class InformasiResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('Informasi_name')
+                Forms\Components\TextInput::make('judul_informasi')
                     ->required()
-                    ->maxLength(255)
-                    ->columnSpanFull(),
+                    ->maxLength(255),
                 RichEditor::make('deskripsi')
                     ->columnSpanFull(),
                 SpatieMediaLibraryFileUpload::make('informasi')->label('Banner/Poster')
                     ->collection('informasi')
                     ->columnSpanFull(),
-                Forms\Components\DateTimePicker::make('mulai')
-                    ->required(),
-                Forms\Components\DateTimePicker::make('selesai')
-                    ->required(),
                 Toggle::make('status_publish')
                     ->onIcon('heroicon-o-check')
                     ->onColor('success')
@@ -52,14 +47,8 @@ class InformasiResource extends Resource
         return $table
             ->columns([
                 SpatieMediaLibraryImageColumn::make('informasi')->collection('informasi'),
-                Tables\Columns\TextColumn::make('Informasi_name')
+                Tables\Columns\TextColumn::make('judul_informasi')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('mulai')
-                    ->dateTime()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('selesai')
-                    ->dateTime()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('status_publish')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {

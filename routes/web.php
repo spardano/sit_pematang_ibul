@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/{pengajuan}/download/pdf', [converToPDFController::class, 'downloadPdf'])->name('pengajuan_layanan.download.pdf');
 Route::get('/sktm', [converToPDFController::class, 'webview'])->name('sktm');

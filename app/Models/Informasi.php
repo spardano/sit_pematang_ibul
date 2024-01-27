@@ -12,10 +12,14 @@ class Informasi extends Model implements HasMedia
     use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
-        'Informasi_name',
+        'judul_informasi',
         'deskripsi',
-        'mulai',
-        'selesai',
         'status_publish',
+        'id_user',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'id_user');
+    }
 }
