@@ -32,4 +32,16 @@ class BumdesController extends Controller
             'data' => $data_baru
         ]);
     }
+
+    public function getSingleBumdes($id)
+    {
+        $bumdes = Bumdes::where('id', $id)->first();
+        $data['bumdes'] = $bumdes;
+        $data['gambar'] = $bumdes->getFirstMediaUrl('bumdes');
+
+        return response()->json([
+            'status' => true,
+            'data' => $data
+        ]);
+    }
 }

@@ -38,6 +38,7 @@ Route::prefix('umum')->group(function () {
     Route::get('informasi', [InformationController::class, 'getInformations']);
     Route::get('bumdes', [BumdesController::class, 'getBumdes']);
     Route::get('informasi-detail/{id}', [InformationController::class, 'getSingleInformations']);
+    Route::get('bumdes-detail/{id}', [BumdesController::class, 'getSingleBumdes']);
 });
 
 Route::middleware('is-authenticated')->prefix('auth')->group(function () {

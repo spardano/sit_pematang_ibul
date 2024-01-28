@@ -34,14 +34,10 @@ class BumdesResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('lokasi')
-                    ->required()
-                    ->maxLength(255)
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('alamat')
-                    ->required()
-                    ->maxLength(255)
-                    ->columnSpanFull(),
+                Forms\Components\Textarea::make('lokasi')
+                    ->required(),
+                Forms\Components\Textarea::make('alamat')
+                    ->required(),
                 Forms\Components\TimePicker::make('buka')
                     ->required(),
                 Forms\Components\TimePicker::make('tutup')
