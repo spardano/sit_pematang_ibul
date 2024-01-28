@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CryptController;
 use App\Models\LoginLogs;
+use App\Models\Penduduk;
 use App\Models\User;
 use Carbon\Carbon;
 use Exception;
@@ -91,6 +92,8 @@ class AuthMobileController extends Controller
         $data['user'] = $user;
         $data['expired_at'] = Carbon::now()->addDay();
 
+
+
         $temp['pas-foto'] = $user->penduduk->getFirstMediaUrl('pas-foto');
         $temp['kk'] = $user->penduduk->getFirstMediaUrl('kk');
         $temp['ktp'] = $user->penduduk->getFirstMediaUrl('ktp');
@@ -153,6 +156,7 @@ class AuthMobileController extends Controller
      */
     public function register(Request $request)
     {
+
         //cek if email already exist
         $cekEmail = User::where('email', $request->email)->first();
         if ($cekEmail) {
@@ -170,33 +174,35 @@ class AuthMobileController extends Controller
             ]);
         }
 
+        $cekPenduduk = Penduduk::where('nik', $request->nik)->first();
+        if (!$cekPenduduk) {
+
+            return response()->json([
+                "status" => false,
+                "message" => 'Maaf, NIK anda tidak terdaftar sebagai penduduk Desa Pematang Ibul'
+            ]);
+        }
+
 
         $user = User::create([
             'name' => $request->nama,
             'email' => $request->email,
             'nik' => $request->nik,
-            'password' => base64_encode(md5($request->password)),
+            'password' => Hash::make($request->password),
             'role' => 'pengguna',
         ]);
 
         if ($user) {
-            $token = $this->crypt->crypt(Carbon::now());
-
-            // Simpan Login Logs berserta token
-            LoginLogs::create([
-                'user_id' => $user->id,
-                'token' => $token,
-                'devices' => $_SERVER['HTTP_USER_AGENT'],
-                'status' => 1
+            return response()->json([
+                'status' => true,
+                'message' => 'Berhasil Registrasi, silahkan login!'
             ]);
-
-            return $this->respondWithToken($token, $user, 'Berhasil Daftar Akun!');
         } else {
 
-            return response()->json(([
+            return response()->json([
                 'status' => false,
                 'message' => 'Gagal registrasi akun'
-            ]));
+            ]);
         }
     }
 
