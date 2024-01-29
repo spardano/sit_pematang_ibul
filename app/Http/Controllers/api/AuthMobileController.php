@@ -297,4 +297,25 @@ class AuthMobileController extends Controller
             'message' => 'Gagal menyimpan perubahan'
         ]);
     }
+
+    public function editPassword(Request $request)
+    {
+
+        // return $checkPasslama = base64_encode(md5($request->passlama));
+        $pass = User::where('id', $request->id)->first();
+        $checkPassword = Hash::check($request->passlama, $pass->password);
+        if ($checkPassword) {
+            User::where('id', $request->id)->update([
+                'password' => Hash::make($request->passbaru)
+            ]);
+            return response()->json([
+                'status' => true,
+                'message' => 'Password berhasil di perbarui'
+            ]);
+        }
+        return response()->json([
+            'status' => false,
+            'message' => 'Password lama yang anda masukan tidak benar'
+        ]);
+    }
 }

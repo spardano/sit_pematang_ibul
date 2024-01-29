@@ -150,13 +150,19 @@
     </p>
 
     <div class="sign">
-        <p style="line-height: 10%">Pematang Ibul, {{ Carbon\Carbon::today()->toDateString()}}</p>
-        <p style="line-height: 10%; margin-bottom:0px;">{{ $pengajuan->pejabat_ttd->jabatan}}</p>
 
-        <img width="90%" src="{{$pengajuan->pejabat_ttd->getFirstMediaUrl('signature')}}">
+        <p style="line-height: 10%; z-index: -1000;">Pematang Ibul, {{ Carbon\Carbon::today()->toDateString() }}
+        </p>
+        <p style="line-height: 10%; margin-bottom:0px;">{{ $pengajuan->pejabat_ttd->jabatan }}</p>
 
-        <p style=" text-decoration:underline; margin-top:0px;"> {{$pengajuan->pejabat_ttd->nama_pejabat}}</p>
-        <p style="line-height: 10%">NIP: {{$pengajuan->pejabat_ttd->nip}}</p>
+        <img style="position: absolute; z-index: -1000; width: 190px; margin-left:-50%; margin-top:-30%;" src="{{ asset('images/stempel.png') }}">
+
+        <img width="90%" style="z-index: -1;" src="{{ $pengajuan->pejabat_ttd->getFirstMediaUrl('signature') }}">
+
+        <p style=" text-decoration:underline; margin-top:0px; z-index: -1000;">
+            {{ $pengajuan->pejabat_ttd->nama_pejabat }}
+        </p>
+        <p style="line-height: 10%">NIP: {{ $pengajuan->pejabat_ttd->nip }}</p>
     </div>
 
 </body>
