@@ -176,7 +176,6 @@ class AuthMobileController extends Controller
 
         $cekPenduduk = Penduduk::where('nik', $request->nik)->first();
         if (!$cekPenduduk) {
-
             return response()->json([
                 "status" => false,
                 "message" => 'Maaf, NIK anda tidak terdaftar sebagai penduduk Desa Pematang Ibul'
