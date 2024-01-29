@@ -47,6 +47,8 @@ class converToPDFController extends Controller
         if ($pengajuan->layanan_desa->slug == 'surat-keterangan-tidak-mampu') {
             $pdf = Pdf::loadView('formsuratPDF.sktm', $data);
         } elseif ($pengajuan->layanan_desa->slug == 'surat-keterangan-usaha') {
+            $data['jenis_pekerjaan'] = $intJenisKerja->jenis_pekerjaan;
+            $data['agama'] = $intAgama->agama;
             $pdf = Pdf::loadView('formsuratPDF.surat-izin-usaha', $data);
         } elseif ($pengajuan->layanan_desa->slug == 'surat-keterangan-kematian') {
             $data['jenis_pekerjaan'] = $intJenisKerja->jenis_pekerjaan;

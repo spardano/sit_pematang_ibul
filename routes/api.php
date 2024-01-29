@@ -50,4 +50,5 @@ Route::middleware('is-authenticated')->prefix('auth')->group(function () {
     Route::get('data-pengajuan', [PengajuanController::class, 'getPengajuan']);
     Route::post('upload-pic/{type}', [AuthMobileController::class, 'uploadPic']);
     Route::post('update-profile', [AuthMobileController::class, 'updateProfile']);
+    Route::post('update-pass', [AuthMobileController::class, 'editPassword']);
 });
