@@ -20,6 +20,8 @@ class BumdesController extends Controller
             $temp['pengelola'] = $item->pengelola;
             $temp['lokasi'] = $item->lokasi;
             $temp['alamat'] = $item->alamat;
+            $temp['buka'] = $item->buka;
+            $temp['tutup'] = $item->tutup;
             $temp['thumbnail'] = $item->getFirstMediaUrl('bumdes');
             $temp['created_at'] = $item->created_at;
             return $temp;
