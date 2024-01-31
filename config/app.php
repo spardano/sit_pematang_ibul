@@ -55,9 +55,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://sid-pematang-ibul.online'),
 
-    'asset_url' => env('ASSET_URL'),
+    'asset_url' => env('ASSET_URL', 'http://sid-pematang-ibul.online'),
 
     /*
     |--------------------------------------------------------------------------
@@ -122,7 +122,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY', 'base64:QwQQFjX8XjgtKgXElZqnDQZfMglnne3JVlsvl8eJjjg='),
 
     'cipher' => 'AES-256-CBC',
 
